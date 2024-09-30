@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
+import UploadcareButton from "./uploadcare-button"
 type Props = {
     userImage: string | null
     onDelete?: any
@@ -21,11 +22,11 @@ function ProfilePicture({ userImage, onDelete, onUpload }: Props) {
     }
     return (
         <div className="flex flex-col">
-            <p className="text-lg text-white">Profile Picture</p>
+            <p className="text-lg text-white"> Profile Picture</p>
             <div className="flex h-[30vh] flex-col items-center justify-center">
                 {userImage ? (
                     <>
-                        <div className="w-/12 relative h-full">
+                        <div className="relative h-full w-2/12">
                             <Image src={userImage} alt="User_Image" fill />
                         </div>
                         <Button
@@ -36,9 +37,7 @@ function ProfilePicture({ userImage, onDelete, onUpload }: Props) {
                         </Button>
                     </>
                 ) : (
-                    <>
-                        <UploadcreaButton onUpload={onUpload} />
-                    </>
+                    <UploadcareButton onUpload={onUpload} />
                 )}
             </div>
         </div>
