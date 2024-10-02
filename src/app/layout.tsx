@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 import "./globals.css"
 import { DM_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
+import ModalProvider from "@/app/providers/modal-provider"
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${font.className} ${geistSans.variable} ${geistMono.variable} antialiased`}>
                     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                        {children}
+                        <ModalProvider>{children}</ModalProvider>
                     </ThemeProvider>
                 </body>
             </html>
