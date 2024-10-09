@@ -10,6 +10,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Loader2 } from "lucide-react"
+import { onCreateWorkflow } from "@/app/(main)/(pages)/workflows/_actions/workflow-connections"
+import { toast } from "sonner"
 type Props = {
     title?: string
     subTitle?: string
@@ -28,6 +30,11 @@ const WorkflowForm = ({ subTitle, title }: Props) => {
     const router = useRouter()
 
     const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
+        const workflow = await onCreateWorkflow(values.name, values.description)
+        if (workflow) {
+            toast.message(workflow.message)
+            router.refresh()
+        }
         setClose()
     }
     return (

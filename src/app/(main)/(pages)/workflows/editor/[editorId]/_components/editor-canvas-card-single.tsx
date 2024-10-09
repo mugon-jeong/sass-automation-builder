@@ -1,22 +1,23 @@
-import React, { useMemo } from "react"
 import { EditorCanvasCardType } from "@/lib/types"
 import { useEditor } from "@/providers/editor-provider"
+import React, { useMemo } from "react"
 import { Position, useNodeId } from "reactflow"
-import EditorCanvasIconHelper from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/editor-canvas-card-icon-hepler"
-import CustomHandle from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/custom-handle"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import EditorCanvasIconHelper from "./editor-canvas-card-icon-hepler"
+import CustomHandle from "./custom-handle"
 import { Badge } from "@/components/ui/badge"
-import { clsx } from "clsx"
 
-type Props = {
-    data: EditorCanvasCardType
-}
-const EditorCanvasCardSingle = ({ data }: Props) => {
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import clsx from "clsx"
+
+type Props = {}
+
+const EditorCanvasCardSingle = ({ data }: { data: EditorCanvasCardType }) => {
     const { dispatch, state } = useEditor()
     const nodeId = useNodeId()
     const logo = useMemo(() => {
         return <EditorCanvasIconHelper type={data.type} />
     }, [data])
+
     return (
         <>
             {data.type !== "Trigger" && data.type !== "Google Drive" && (

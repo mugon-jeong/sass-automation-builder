@@ -1,16 +1,17 @@
 import { AccordionContent } from "@/components/ui/accordion"
+import { ConnectionProviderProps } from "@/providers/connections-provider"
+import { EditorState } from "@/providers/editor-provider"
 import { nodeMapper } from "@/lib/types"
 import React, { useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { onContentChange } from "@/lib/editor-utils"
+import GoogleFileDetails from "./google-file-details"
+import GoogleDriveFiles from "./google-drive-files"
 import ActionButton from "./action-button"
+import { getFileMetaData } from "@/app/(main)/(pages)/connections/_actions/google-connection"
 import axios from "axios"
 import { toast } from "sonner"
-import { ConnectionProviderProps } from "@/providers/connections-provider"
-import { EditorState } from "@/providers/editor-provider"
-import GoogleDriveFiles from "./google-drive-files"
-import GoogleFileDetails from "./google-file-details"
 
 export interface Option {
     value: string
@@ -57,7 +58,7 @@ const ContentBasedOnTitle = ({
             }
         }
         reqGoogle()
-    }, [setFile])
+    }, [])
 
     // @ts-ignore
     const nodeConnectionType: any = nodeConnection[nodeMapper[title]]

@@ -1,22 +1,22 @@
-import React, { useCallback, useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
-import { useNodeConnections } from "@/providers/connections-provider"
-import { toast } from "sonner"
+"use client"
 import { Button } from "@/components/ui/button"
-import {
-    onCreateNodesEdges,
-    onFlowPublish,
-} from "@/app/(main)/(pages)/workflows/editor/[editorId]/_actions/workflow-connections"
+import { useNodeConnections } from "@/providers/connections-provider"
+import { usePathname } from "next/navigation"
+import React, { useCallback, useEffect, useState } from "react"
+import { onCreateNodesEdges, onFlowPublish } from "../_actions/workflow-connections"
+import { toast } from "sonner"
 
 type Props = {
     children: React.ReactNode
     edges: any[]
     nodes: any[]
 }
+
 const FlowInstance = ({ children, edges, nodes }: Props) => {
     const pathname = usePathname()
     const [isFlow, setIsFlow] = useState([])
     const { nodeConnection } = useNodeConnections()
+
     const onFlowAutomation = useCallback(async () => {
         const flow = await onCreateNodesEdges(
             pathname.split("/").pop()!,
@@ -26,12 +26,12 @@ const FlowInstance = ({ children, edges, nodes }: Props) => {
         )
 
         if (flow) toast.message(flow.message)
-    }, [edges, isFlow, nodes, pathname])
+    }, [nodeConnection])
 
     const onPublishWorkflow = useCallback(async () => {
         const response = await onFlowPublish(pathname.split("/").pop()!, true)
         if (response) toast.message(response)
-    }, [pathname])
+    }, [])
 
     const onAutomateFlow = async () => {
         const flows: any = []
@@ -49,7 +49,8 @@ const FlowInstance = ({ children, edges, nodes }: Props) => {
 
     useEffect(() => {
         onAutomateFlow()
-    }, [edges, onAutomateFlow])
+    }, [edges])
+
     return (
         <div className="flex flex-col gap-2">
             <div className="flex gap-3 p-4">
