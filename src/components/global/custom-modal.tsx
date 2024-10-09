@@ -9,7 +9,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
-import { useModal } from "@/app/providers/modal-provider"
+import { useModal } from "@/providers/modal-provider"
 import { Button } from "@/components/ui/button"
 
 type Props = {

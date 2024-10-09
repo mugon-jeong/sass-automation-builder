@@ -86,6 +86,7 @@ const InitialValues: ConnectionProviderProps = {
     setIsLoading: () => undefined,
     setWorkFlowTemplate: () => undefined,
 }
+
 const ConnectionsContext = createContext(InitialValues)
 const { Provider } = ConnectionsContext
 

@@ -2,7 +2,7 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
-import { useModal } from "@/app/providers/modal-provider"
+import { useModal } from "@/providers/modal-provider"
 import CustomModal from "@/components/global/custom-modal"
 import WorkflowForm from "@/components/forms/workflow-form"
 

@@ -1,10 +1,12 @@
-import { ThemeProvider } from "@/app/providers/theme-provider"
+import { ThemeProvider } from "@/providers/theme-provider"
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
 import { DM_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
-import ModalProvider from "@/app/providers/modal-provider"
+import ModalProvider from "@/providers/modal-provider"
+import { Toaster } from "@/components/ui/sonner"
+
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -32,7 +34,10 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${font.className} ${geistSans.variable} ${geistMono.variable} antialiased`}>
                     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                        <ModalProvider>{children}</ModalProvider>
+                        <ModalProvider>
+                            {children}
+                            <Toaster />
+                        </ModalProvider>
                     </ThemeProvider>
                 </body>
             </html>

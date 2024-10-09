@@ -1,5 +1,5 @@
 import React from "react"
-import { useModal } from "@/app/providers/modal-provider"
+import { useModal } from "@/providers/modal-provider"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
