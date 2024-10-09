@@ -36,7 +36,7 @@ function ProfileForm({ user, onUpdate }: Props) {
     }, [form, user])
     return (
         <Form {...form}>
-            <form className="flex flex-col gap-6" onSubmit={() => {}}>
+            <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(handleSubmit)}>
                 <FormField
                     disabled={isLoading}
                     control={form.control}
