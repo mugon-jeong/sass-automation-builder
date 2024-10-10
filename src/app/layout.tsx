@@ -6,6 +6,7 @@ import { DM_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import ModalProvider from "@/providers/modal-provider"
 import { Toaster } from "@/components/ui/sonner"
+import { BillingProvider } from "@/providers/billing-provider"
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -34,10 +35,12 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${font.className} ${geistSans.variable} ${geistMono.variable} antialiased`}>
                     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                        <ModalProvider>
-                            {children}
-                            <Toaster />
-                        </ModalProvider>
+                        <BillingProvider>
+                            <ModalProvider>
+                                {children}
+                                <Toaster />
+                            </ModalProvider>
+                        </BillingProvider>
                     </ThemeProvider>
                 </body>
             </html>
