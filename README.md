@@ -25,3 +25,7 @@
 - **@notionhq/client** – Notion API 연동
 - **googleapis** – Google API 연동
 - **@uploadcare/react-uploader** – Uploadcare를 통한 파일 업로드
+
+# sreen
+
+<img src="./screen.png" />
